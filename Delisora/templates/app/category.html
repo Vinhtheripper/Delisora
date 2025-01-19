@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %}
+{% load static %} <!-- Phải load static trước -->
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login Page</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Thay bằng đường dẫn CSS của bạn -->
+</head>
+<body>
+    {% block register %}
+      <h5>Result search for {{searched}}</h5> <br />
+        <div class="row text-center" style="width=100%"> <!-- Đặt tất cả sản phẩm trong cùng một row -->
+          {% for product in products %}
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <img class="thumbnail img-fluid" src="{{ product.imageURL }}" alt="Product image">
+            <div class="box-element product">
+              <h6><strong>{{ product.name }}</strong></h6>
+              <hr>
+              <!-- Sửa cú pháp tại đây -->
+              <button
+                  data-product="{{ product.id }}"
+                  data-action="add"
+                  class="btn btn-outline-secondary add-btn update-cart">
+                Add to cart
+              </button>
+              <a class="btn btn-outline-success" href="#"></a>
+              <h4 style="display: inline-block; float: right;"><strong>${{ product.price }}</strong></h4>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+    {% endblock register %}
+</body>
+</html>
